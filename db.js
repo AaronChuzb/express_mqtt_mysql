@@ -1,6 +1,8 @@
 var mysql = require('mysql');
 var dbConfig = require('./db.config.js');
 
+//此工具类已经对错误做出了处理
+
 module.exports = {
   query: function (sql, params, callback) {
     //每次使用的时候需要创建链接，数据操作完成之后要关闭连接
