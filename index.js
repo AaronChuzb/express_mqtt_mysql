@@ -19,15 +19,18 @@ client.on('message', (topic, message)=>{
   console.log(data)
 })
 app.get('/', (req, res) => {
-  /* res.send('服务端正在运行') */
-  db.query("SELECT * FROM datas",[], async (results, fields) => {
+   /* res.send('服务端正在运行')  */
+  db.query("SELECT * FROM `realtimedata`",[], async (results, fields) => {
    console.log(results)
    await res.send(results)
   })
 })
 
 app.get('/update', (req, res) => {
-  res.send('接口运行正常')
+  db.query("INSERT INTO realtimedata VALUE(?,?,?,?,?,?,?)",[4,'插入测试',0,25,65,120,new Date().toJSON().slice(0, 19).replace('/T.*/', ' ')], async (results, fields) => {
+   console.log(results)
+   await res.send(results)
+  })
 })
 
 app.listen(port, () => {
